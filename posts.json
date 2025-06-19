@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "title": "İlk Blog Yazım",
+    "author": "Arda",
+    "content": "Bu, blog sitemdeki ilk deneme yazısıdır. Burada, ilgi çekici konular hakkında düşündüklerimi paylaşacağım. Umarım beğenirsiniz!",
+    "createdAt": "2024-06-19T10:30:00Z",
+    "updatedAt": "2024-06-19T10:30:00Z"
+  },
+  {
+    "id": "2",
+    "title": "Web Geliştirmede Son Trendler",
+    "author": "Arda",
+    "content": "Web teknolojileri hızla gelişiyor. React, Vue ve Svelte gibi modern frontend framework'leri, geliştiricilere inanılmaz esneklik sunuyor. Ayrıca, sunucusuz mimariler ve GraphQL gibi teknolojiler de popülerliğini artırıyor. Bu alandaki gelişmeleri takip etmek oldukça heyecan verici.",
+    "createdAt": "2024-06-18T14:15:00Z",
+    "updatedAt": null
+  },
+  {
+    "id": "3",
+    "title": "Gezginin Notları: Kapadokya",
+    "author": "Arda",
+    "content": "Kapadokya'nın büyülü atmosferi her gezginin görmesi gereken bir yer. Sabahın erken saatlerinde balonların gökyüzünü doldurduğu o anı yaşamak tarifsizdi. Yer altı şehirleri, peri bacaları ve lezzetli yöresel yemekleriyle unutulmaz bir deneyim sundu.",
+    "createdAt": "2024-06-17T09:00:00Z",
+    "updatedAt": "2024-06-17T11:00:00Z"
+  }
+]

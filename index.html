@@ -114,6 +114,19 @@
         </div>
     </div>
 
+    <!-- Blog Detay Modalı (Yeni Eklendi) -->
+    <div id="postDetailModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button id="closePostDetailModal" class="absolute top-4 right-4 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white text-3xl font-bold">
+                &times;
+            </button>
+            <h3 id="detailPostTitle" class="text-3xl font-bold mb-4 text-blue-600 dark:text-blue-400"></h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Yazar: <span id="detailPostAuthor" class="font-semibold"></span></p>
+            <p class="text-gray-500 dark:text-gray-400 text-xs mb-6">Yayın Tarihi: <span id="detailPostDate"></span></p>
+            <div id="detailPostContent" class="text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"></div>
+        </div>
+    </div>
+
     <script type="module">
         // Global variables
         let posts = []; // Blog posts will be stored here
@@ -143,6 +156,15 @@
         const passwordError = document.getElementById('passwordError');
         const submitPasswordBtn = document.getElementById('submitPasswordBtn');
         const cancelPasswordBtn = document.getElementById('cancelPasswordBtn');
+
+        // New DOM elements for post detail modal
+        const postDetailModal = document.getElementById('postDetailModal');
+        const closePostDetailModalBtn = document.getElementById('closePostDetailModal');
+        const detailPostTitle = document.getElementById('detailPostTitle');
+        const detailPostAuthor = document.getElementById('detailPostAuthor');
+        const detailPostDate = document.getElementById('detailPostDate');
+        const detailPostContent = document.getElementById('detailPostContent');
+
 
         // Function to display error messages
         function showErrorMessage(message) {
@@ -190,9 +212,9 @@
             postsToRender.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
             postsToRender.forEach(post => {
-                // Card for blog view
+                // Card for blog view (now clickable to show full details)
                 const blogCard = `
-                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md cursor-pointer hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300" onclick="showPostDetail('${post.id}')">
                         <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">${post.title}</h3>
                         <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Yazar: ${post.author}</p>
                         <p class="text-gray-500 dark:text-gray-400 text-xs mb-4">Yayın Tarihi: ${formatDate(post.createdAt)}</p>
@@ -201,7 +223,7 @@
                 `;
                 blogPostsList.insertAdjacentHTML('beforeend', blogCard);
 
-                // Card for admin panel view
+                // Card for admin panel view (not clickable for details as it has edit/delete)
                 const adminCard = `
                     <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md flex flex-col justify-between" data-id="${post.id}">
                         <div>
@@ -257,6 +279,25 @@
                 showErrorMessage("Blog yazılarını yüklerken bir sorun oluştu. Lütfen konsolu kontrol edin.");
                 blogPostsList.innerHTML = '<p class="col-span-full text-center text-red-600 dark:text-red-300 text-lg">Blog yazılarını yüklerken bir hata oluştu. Lütfen JSON dosyasının doğru yapılandırıldığından ve erişilebilir olduğundan emin olun.</p>';
             }
+        };
+
+        // Function to show post detail modal
+        window.showPostDetail = (postId) => {
+            const post = posts.find(p => p.id === postId);
+            if (post) {
+                detailPostTitle.textContent = post.title;
+                detailPostAuthor.textContent = post.author;
+                detailPostDate.textContent = formatDate(post.createdAt);
+                detailPostContent.textContent = post.content; // Use textContent to preserve formatting if content has newlines
+                postDetailModal.classList.remove('hidden');
+            } else {
+                showErrorMessage("Yazı bulunamadı.");
+            }
+        };
+
+        // Function to close post detail modal
+        closePostDetailModalBtn.onclick = () => {
+            postDetailModal.classList.add('hidden');
         };
 
         // Toggle between admin panel and blog view (This function is no longer called by a button)

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezgin Akademisyen - Keşfet, Öğren, Paylaş</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Hafif gri arka plan */
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #ef4444, #f97316); /* Kırmızıdan turuncuya degrade */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-background {
+            /* Dinamik olarak değişebilecek örnek arka plan resmi */
+            background-image: url('https://placehold.co/1920x700/D0E7FF/000000?text=Seyahat%20ve%20Akademi');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Header Bölümü -->
+    <header class="bg-white shadow-md py-4 px-6 md:px-12 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center flex-wrap">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <!--
+                    Logonun doğru şekilde görüntülenmesi için 'logo.png' dosyasının
+                    HTML dosyasıyla aynı dizinde veya doğru bir URL yolunda olduğundan emin olun.
+                    Eğer logo görüntülenmezse, dosya yolunu kontrol edin veya bir web adresine yükleyip o adresi kullanın.
+                -->
+                <img src="..\Src\logo.png" onerror="this.onerror=null;this.src='..\Src\logo.png';" alt="Gezgin Akademisyen Logo" class="h-12 w-12 rounded-full object-cover">
+                <span class="text-2xl font-bold text-gray-800">Gezgin Akademisyen</span>
+            </div>
+
+            <!-- Navigasyon Menüsü -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition duration-300">Anasayfa</a>
+                <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition duration-300">Blog</a>
+                <div class="relative group">
+                    <button class="text-gray-700 hover:text-red-600 font-medium transition duration-300 focus:outline-none">
+                        Kategoriler <i class="fas fa-chevron-down text-xs ml-1"></i>
+                    </button>
+                    <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 py-2 w-48 z-10">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Seyahat</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Eğitim</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Bilim</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Kültür</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Tavsiyeler</a>
+                    </div>
+                </div>
+                <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition duration-300">Hakkımızda</a>
+                <a href="#" class="text-gray-700 hover:text-red-600 font-medium transition duration-300">İletişim</a>
+            </nav>
+
+            <!-- Arama ve Sosyal Medya İkonları -->
+            <div class="flex items-center space-x-4 ml-auto md:ml-0">
+                <button class="text-gray-700 hover:text-red-600 focus:outline-none">
+                    <i class="fas fa-search text-lg"></i>
+                </button>
+                <div class="flex space-x-3">
+                    <a href="#" class="text-gray-700 hover:text-red-600"><i class="fab fa-instagram text-lg"></i></a>
+                    <a href="#" class="text-gray-700 hover:text-red-600"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-700 hover:text-red-600"><i class="fab fa-facebook-f text-lg"></i></a>
+                </div>
+            </div>
+
+            <!-- Mobil Menü Butonu -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-red-600 focus:outline-none ml-4">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobil Navigasyon Menüsü (Gizli) -->
+        <nav id="mobile-menu" class="hidden md:hidden flex-col mt-4 space-y-2">
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Anasayfa</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Blog</a>
+            <div class="relative">
+                <button id="mobile-category-toggle" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md focus:outline-none flex justify-between items-center">
+                    Kategoriler <i class="fas fa-chevron-down text-xs"></i>
+                </button>
+                <div id="mobile-category-menu" class="hidden flex-col ml-4 mt-1 space-y-1">
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Seyahat</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Eğitim</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Bilim</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Kültür</a>
+                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Tavsiyeler</a>
+                </div>
+            </div>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Hakkımızda</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">İletişim</a>
+        </nav>
+    </header>
+
+    <!-- Hero Alanı -->
+    <main class="flex-grow">
+        <section class="hero-background relative py-20 md:py-32 text-white flex items-center justify-center text-center">
+            <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Karartma efekti -->
+            <div class="container mx-auto z-10 p-4">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                    <span class="text-gradient">Gezgin Akademisyen</span>: Keşfet, Öğren, Paylaş.
+                </h1>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+                    Seyahat ve Akademiyi Buluşturan Eşsiz Bakış Açınız.
+                </p>
+                <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    En Son Yazılarımızı Keşfet
+                </button>
+            </div>
+        </section>
+
+        <!-- Öne Çıkan Yazılar Bölümü -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6 md:px-12">
+                <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">Öne Çıkan Yazılar</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Örnek Blog Yazısı Kartı 1 -->
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://placehold.co/600x400/94A3B8/FFFFFF?text=Antik+K%C3%BCt%C3%BCphane" alt="Antik Kütüphane Görseli" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-gray-900 mb-2">Antik Medeniyetlerin İzinde: Bilgiye Yolculuk</h3>
+                            <p class="text-gray-600 text-sm mb-3">Yazar: Dr. Elif Yılmaz | 15 Haziran 2025</p>
+                            <p class="text-gray-700 mb-4">Dünyanın dört bir yanındaki antik kütüphanelerin ve bilgi merkezlerinin izini sürdük. Bu yazı, geçmişin bilgeliğine bir saygı duruşu niteliğinde.</p>
+                            <a href="TemplatePost.html" class="text-red-600 hover:text-red-700 font-medium">Devamını Oku <i class="fas fa-arrow-right text-sm ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Örnek Blog Yazısı Kartı 2 -->
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://placehold.co/600x400/A78BFA/FFFFFF?text=Yapay+Zeka+ve+E%C4%9Fitim" alt="Yapay Zeka ve Eğitim Görseli" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-gray-900 mb-2">Yapay Zeka ve Eğitimin Geleceği: Yeni Yaklaşımlar</h3>
+                            <p class="text-gray-600 text-sm mb-3">Yazar: Prof. Can Demir | 10 Haziran 2025</p>
+                            <p class="text-gray-700 mb-4">Yapay zeka teknolojileri, eğitim alanında çığır açıyor. Bu yazımızda, AI'nın öğrenme süreçlerine entegrasyonunu inceliyoruz.</p>
+                            <a href="#" class="text-red-600 hover:text-red-700 font-medium">Devamını Oku <i class="fas fa-arrow-right text-sm ml-1"></i></a>
+                        </div>
+                    </div>
+                    <!-- Örnek Blog Yazısı Kartı 3 -->
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                        <img src="https://placehold.co/600x400/60A5FA/FFFFFF?text=K%C3%BClt%C3%BCrel+Miras" alt="Kültürel Miras Görseli" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-gray-900 mb-2">Gizli Kültürler: Az Bilinen Miras Alanları</h3>
+                            <p class="text-gray-600 text-sm mb-3">Yazar: Ayşe Doğan | 05 Haziran 2025</p>
+                            <p class="text-gray-700 mb-4">Dünyanın dört bir yanındaki gizli kalmış kültürel miras alanlarını keşfedin. Bu yerler sizi büyüleyecek.</p>
+                            <a href="#" class="text-red-600 hover:text-red-700 font-medium">Devamını Oku <i class="fas fa-arrow-right text-sm ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105" href="all-posts.html">
+                        Tüm Yazıları Görüntüle
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kategoriler Bölümü -->
+        <section class="py-16 bg-blue-50">
+            <div class="container mx-auto px-6 md:px-12 text-center">
+                <h2 class="text-4xl font-bold text-gray-800 mb-12">İlgilendiğiniz Konuları Keşfedin</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <a href="#" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-plane text-5xl text-red-500 mb-4"></i>
+                        <span class="text-lg font-semibold text-gray-800">Seyahat Rehberleri</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-book-open text-5xl text-blue-500 mb-4"></i>
+                        <span class="text-lg font-semibold text-gray-800">Bilimsel Çalışmalar</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-landmark text-5xl text-green-500 mb-4"></i>
+                        <span class="text-lg font-semibold text-gray-800">Kültürel İncelemeler</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-graduation-cap text-5xl text-purple-500 mb-4"></i>
+                        <span class="text-lg font-semibold text-gray-800">Eğitim Sistemleri</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-lightbulb text-5xl text-yellow-500 mb-4"></i>
+                        <span class="text-lg font-semibold text-gray-800">Tavsiyeler</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hakkımızda Kısa Bilgi Bölümü -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6 md:px-12 text-center max-w-3xl">
+                <h2 class="text-4xl font-bold text-gray-800 mb-8">Gezgin Akademisyen Kimdir?</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                    Gezgin Akademisyen, meraklı zihinleri dünya çapında bir yolculuğa çıkarırken, akademik bilgiyi seyahat deneyimleriyle harmanlayarak benzersiz bir bakış açısı sunar. Bilimin ışığında dünyayı keşfedin, farklı kültürleri deneyimleyin ve elde ettiğiniz bilgileri bizimle paylaşın.
+                </p>
+                <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    Daha Fazlasını Öğren
+                </button>
+            </div>
+        </section>
+
+        <!-- Bülten Aboneliği Bölümü -->
+        <section class="py-16 bg-gray-800 text-white">
+            <div class="container mx-auto px-6 md:px-12 text-center max-w-2xl">
+                <h2 class="text-4xl font-bold mb-6">En Yeni Yazılarımızdan Haberdar Olun!</h2>
+                <p class="text-lg mb-8">
+                    E-posta bültenimize abone olarak en güncel seyahat ve akademik içeriklerimizi kaçırmayın.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <input type="email" placeholder="E-posta Adresiniz" class="w-full sm:w-2/3 p-4 rounded-md border-0 focus:ring-2 focus:ring-red-500 text-gray-900 shadow-md" id="email-input">
+                    <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-md shadow-lg transition duration-300 transform hover:scale-105" onclick="copyToClipboard('email-input')">
+                        Abone Ol
+                    </button>
+                </div>
+                <!-- Message box for clipboard copy -->
+                <div id="message-box" class="fixed bottom-8 right-8 bg-green-500 text-white px-6 py-3 rounded-md shadow-lg hidden">
+                    Kopyalandı!
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Bölümü -->
+    <footer class="bg-gray-900 text-gray-300 py-12 px-6 md:px-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Logo ve Kısa Açıklama -->
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <!--
+                    Logonun doğru şekilde görüntülenmesi için 'logo.png' dosyasının
+                    HTML dosyasıyla aynı dizinde veya doğru bir URL yolunda olduğundan emin olun.
+                    Eğer logo görüntülenmezse, dosya yolunu kontrol edin veya bir web adresine yükleyip o adresi kullanın.
+                -->
+                <img src="..\Src\logo.png" onerror="this.onerror=null;this.src='https://placehold.co/80x80?text=Logo';" alt="Gezgin Akademisyen Logo" class="h-20 w-20 mb-4 rounded-full object-cover">
+                <p class="text-sm">
+                    Gezgin Akademisyen, seyahat ve akademik bilgiyi harmanlayarak size eşsiz bir bakış açısı sunar.
+                </p>
+            </div>
+
+            <!-- Hızlı Bağlantılar -->
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-semibold text-white mb-4">Hızlı Bağlantılar</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-red-500 transition duration-300">Anasayfa</a></li>
+                    <li><a href="#" class="hover:text-red-500 transition duration-300">Blog</a></li>
+                    <li><a href="#" class="hover:text-red-500 transition duration-300">Hakkımızda</a></li>
+                    <li><a href="#" class="hover:text-red-500 transition duration-300">Gizlilik Politikası</a></li>
+                    <li><a href="#" class="hover:text-red-500 transition duration-300">Kullanım Koşulları</a></li>
+                </ul>
+            </div>
+
+            <!-- İletişim ve Sosyal Medya -->
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-semibold text-white mb-4">Bize Ulaşın</h3>
+                <p class="mb-2"><i class="fas fa-envelope mr-2"></i> info@gezginakademisyen.com</p>
+                <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                    <a href="#" class="text-gray-300 hover:text-red-500 text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-red-500 text-2xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-red-500 text-2xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-red-500 text-2xl"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-red-500 text-2xl"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+            © 2025 Gezgin Akademisyen. Tüm Hakları Saklıdır.
+        </div>
+    </footer>
+
+    <script>
+        // Mobil menü açma/kapama
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Mobil kategori menüsü açma/kapama
+        const mobileCategoryToggle = document.getElementById('mobile-category-toggle');
+        const mobileCategoryMenu = document.getElementById('mobile-category-menu');
+        mobileCategoryToggle.addEventListener('click', () => {
+            mobileCategoryMenu.classList.toggle('hidden');
+            mobileCategoryToggle.querySelector('i').classList.toggle('fa-chevron-down');
+            mobileCategoryToggle.querySelector('i').classList.toggle('fa-chevron-up');
+        });
+
+        // Panoya Kopyalama Fonksiyonu
+        function copyToClipboard(elementId) {
+            const inputElement = document.getElementById(elementId);
+            if (inputElement) {
+                inputElement.select(); // Giriş alanındaki metni seç
+                inputElement.setSelectionRange(0, 99999); // Mobil cihazlar için
+
+                try {
+                    document.execCommand('copy'); // Metni panoya kopyala
+                    // Kopyalandı mesajını göster
+                    const messageBox = document.getElementById('message-box');
+                    messageBox.classList.remove('hidden');
+                    setTimeout(() => {
+                        messageBox.classList.add('hidden');
+                    }, 2000); // 2 saniye sonra gizle
+                } catch (err) {
+                    console.error('Panoya kopyalama başarısız oldu:', err);
+                    // Kullanıcıya bir hata mesajı gösterebilirsiniz
+                    // Örneğin: "Kopyalama desteklenmiyor veya başarısız oldu."
+                }
+            }
+        }
+    </script>
+</body>
+</html>

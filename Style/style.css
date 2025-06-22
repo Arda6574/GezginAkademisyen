@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: rgb(255, 214, 107);
+    margin: 0;
+    padding: 0;
+}
+.topnav a {
+    float: left;
+    display: block;
+    color: rgb(77, 168, 218);
+    text-align:center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 46px;
+    border-radius: 50px;
+}
+.topnav a:hover {
+    background-color: rgb(77, 168, 218);
+    color: rgb(245, 245, 245);
+}
+
+.topnav a.Logo {
+    color: rgb(77, 168, 218);
+    text-align: center;
+    float: left;
+    display: block;
+    padding: auto;
+    font-weight: bold;
+    font-size: large;
+    text-decoration: none;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+}
+.topnav a.Logo:hover{
+   color: rgb(77, 168, 218);
+   background-color: transparent;
+}
+.topnav a.Logo .logoimg {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+}
+.topnav div.bosluk {
+    height: 75px;
+    width: 100%;
+}
+
+form {
+    background-color: rgb(77, 168, 218);
+    width: 400px;
+    height: 44px;
+    border-radius: 5px;
+    float: right;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input {
+    all: unset;
+    font: 16px system-ui;
+    color: rgb(245, 245, 245);
+    height: 100%;
+    width: 100%;
+    padding: 6px 10px;
+}
+
+::placeholder {
+    color: rgb(245, 245, 245);
+    opacity: 0.7; 
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+}
+  
+img {
+    color: rgb(245, 245, 245);
+    fill: currentColor;
+    width: auto;
+    height: 90%;
+    padding: 10px;
+}
+
+footer {
+    background-color: rgb(77, 168, 218);
+    color: rgb(245, 245, 245);
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    float: left;
+    display: block;
+    margin: 0;
+}
